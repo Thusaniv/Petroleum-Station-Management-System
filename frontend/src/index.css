@@ -1,0 +1,251 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap');
+
+@config "../tailwind.config.js";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Petroleum-themed Golden/Black palette */
+    --background: 222 47% 4%;
+    --foreground: 210 20% 98%;
+
+    --card: 222 47% 8%;
+    --card-foreground: 210 20% 98%;
+
+    --popover: 222 47% 8%;
+    --popover-foreground: 210 20% 98%;
+
+    /* Golden Yellow - primary */
+    --primary: 47 95% 55%;
+    --primary-foreground: 222 47% 4%;
+
+    /* Deep Blue accent */
+    --secondary: 222 47% 25%;
+    --secondary-foreground: 210 20% 98%;
+
+    --muted: 222 47% 12%;
+    --muted-foreground: 210 15% 65%;
+
+    /* Gold/Amber accent */
+    --accent: 47 95% 45%;
+    --accent-foreground: 222 47% 4%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 20% 98%;
+
+    /* Success green for payments */
+    --success: 152 69% 45%;
+    --success-foreground: 210 20% 98%;
+
+    /* Warning amber */
+    --warning: 47 95% 55%;
+    --warning-foreground: 222 47% 4%;
+
+    --border: 222 47% 15%;
+    --input: 222 47% 15%;
+    --ring: 47 95% 55%;
+
+    --radius: 0.625rem;
+
+    /* Sidebar - solid blue/black theme */
+    --sidebar-background: 222 47% 3%;
+    --sidebar-foreground: 210 20% 95%;
+    --sidebar-primary: 47 95% 55%;
+    --sidebar-primary-foreground: 222 47% 4%;
+    --sidebar-accent: 222 47% 10%;
+    --sidebar-accent-foreground: 210 20% 95%;
+    --sidebar-border: 222 47% 12%;
+    --sidebar-ring: 47 95% 55%;
+
+    /* Custom gradients */
+    --gradient-ocean: linear-gradient(135deg, hsl(47 95% 55%) 0%, hsl(38 92% 50%) 100%);
+    --gradient-wave: linear-gradient(180deg, hsl(222 47% 3%) 0%, hsl(47 95% 55% / 0.05) 100%);
+    --gradient-card: linear-gradient(145deg, hsl(222 47% 8%) 0%, hsl(222 47% 4%) 100%);
+
+    /* Shadows */
+    --shadow-sm: 0 1px 2px 0 hsl(47 95% 55% / 0.05);
+    --shadow-md: 0 4px 6px -1px hsl(47 95% 55% / 0.1), 0 2px 4px -2px hsl(47 95% 55% / 0.1);
+    --shadow-lg: 0 10px 15px -3px hsl(47 95% 55% / 0.1), 0 4px 6px -4px hsl(47 95% 55% / 0.1);
+    --shadow-glow: 0 0 20px hsl(47 95% 55% / 0.3);
+  }
+
+  .dark {
+    --background: 20 50% 6%;
+    --foreground: 30 20% 95%;
+
+    --card: 22 45% 12%;
+    --card-foreground: 30 20% 95%;
+
+    --popover: 22 45% 12%;
+    --popover-foreground: 30 20% 95%;
+
+    --primary: 38 92% 55%;
+    --primary-foreground: 20 50% 10%;
+
+    --secondary: 20 60% 35%;
+    --secondary-foreground: 30 20% 95%;
+
+    --muted: 22 40% 18%;
+    --muted-foreground: 30 15% 60%;
+
+    --accent: 38 92% 50%;
+    --accent-foreground: 30 20% 95%;
+
+    --destructive: 0 62% 50%;
+    --destructive-foreground: 30 20% 95%;
+
+    --success: 152 69% 45%;
+    --success-foreground: 20 50% 10%;
+
+    --warning: 38 92% 55%;
+    --warning-foreground: 20 50% 10%;
+
+    --border: 22 40% 20%;
+    --input: 22 40% 20%;
+    --ring: 38 92% 55%;
+
+    --sidebar-background: 20 50% 5%;
+    --sidebar-foreground: 30 20% 95%;
+    --sidebar-primary: 38 92% 55%;
+    --sidebar-primary-foreground: 20 50% 10%;
+    --sidebar-accent: 22 45% 15%;
+    --sidebar-accent-foreground: 30 20% 95%;
+    --sidebar-border: 22 40% 18%;
+    --sidebar-ring: 38 92% 55%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: 'IBM Plex Sans', system-ui, sans-serif;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-semibold tracking-tight;
+  }
+}
+
+@layer components {
+  .glass-card {
+    @apply bg-card/80 backdrop-blur-sm border border-border/50 shadow-md;
+  }
+
+  .stat-card {
+    @apply relative overflow-hidden rounded-xl p-6 transition-all duration-300 hover:shadow-lg;
+  }
+
+  .stat-card::before {
+    content: '';
+    @apply absolute inset-0 opacity-5;
+    background: var(--gradient-ocean);
+  }
+
+  .ocean-gradient {
+    background: var(--gradient-ocean);
+  }
+
+  .wave-gradient {
+    background: var(--gradient-wave);
+  }
+
+  .table-row-hover {
+    @apply transition-colors hover:bg-muted/50;
+  }
+
+  .input-focus {
+    @apply focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all duration-200;
+  }
+
+  .btn-petro {
+    @apply bg-primary text-primary-foreground hover:bg-primary/90 shadow-md hover:shadow-lg transition-all duration-200;
+  }
+
+  .animate-fade-in {
+    animation: fadeIn 0.3s ease-out;
+  }
+
+  .animate-slide-up {
+    animation: slideUp 0.4s ease-out;
+  }
+
+  .animate-scale-in {
+    animation: scaleIn 0.3s ease-out;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-muted/30 rounded-full;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-muted-foreground/20 rounded-full hover:bg-muted-foreground/30 transition-colors;
+}
+
+/* Print styles for bills */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+
+  .print-only {
+    display: block !important;
+  }
+}
